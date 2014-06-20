@@ -25,7 +25,12 @@ $commands = array(
 );
 
 // Start with this dir.
-$currentDir = __DIR__;
+if(__DIR__ == '__DIR__'){
+	$currentDir = getcwd();
+} else {
+	$currentDir = __DIR__;
+}
+$allowChangeDir = true;
 $allowChangeDir = true;
 
 // Allowed and denied commands.
@@ -43,7 +48,7 @@ ignore_user_abort(true);
 set_time_limit(0);
 
 // If exist config include it.
-if (is_readable($file = __DIR__ . '/console.config.php')) {
+if (is_readable($file = $currentDir . '/console.config.php')) {
     include $file;
 }
 
